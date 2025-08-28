@@ -1,0 +1,36 @@
+---
+import Button from "@/components/base/Button.astro"
+---
+
+<section class="hero">
+  <div class="container">
+    <h1>Главная страница</h1>
+    <p>Добро пожаловать на главную страницу сайта</p>
+
+    <div class="buttons">
+      <Button
+        variant="primary"
+        size="lg"
+        >Главная кнопка</Button
+      >
+      <Button
+        variant="secondary"
+        size="md"
+        >Вторичная кнопка</Button
+      >
+      <Button href="#about">Ссылка</Button>
+    </div>
+  </div>
+</section>
+
+<style lang="scss" is:global>
+  .hero {
+    padding: 20px 0;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+</style>

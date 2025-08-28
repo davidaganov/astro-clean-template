@@ -1,0 +1,60 @@
+// General files
+@use "reset";
+@use "mixins";
+@use "variables";
+@use "fonts";
+
+// Global styles
+html,
+body {
+  height: 100%;
+  font-family: var(--main-font);
+  color: var(--color-black);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) {
+    max-width: var(--max-width, 1440px);
+  }
+
+  @media (min-width: 640px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media (max-width: 640px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}

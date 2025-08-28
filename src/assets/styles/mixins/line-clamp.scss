@@ -1,0 +1,14 @@
+// Line clamp mixin
+@mixin line-clamp($lines: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  // Fallback for non-webkit browsers
+  @supports not (-webkit-line-clamp: $lines) {
+    max-height: calc(1.4em * $lines);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

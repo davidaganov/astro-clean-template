@@ -1,0 +1,77 @@
+---
+export interface Props {
+  variant?: "primary" | "secondary"
+  size?: "sm" | "md" | "lg"
+  href?: string
+  type?: "button" | "submit" | "reset"
+}
+
+const { variant = "primary", size = "md", href, type = "button" } = Astro.props
+const classes = `btn btn-${variant} btn-${size}`
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={classes}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      class={classes}
+    >
+      <slot />
+    </button>
+  )
+}
+
+<style lang="scss" is:global>
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    font-family: var(--main-font);
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    &-primary {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+      color: var(--color-white);
+
+      &:hover {
+        background: linear-gradient(135deg, var(--color-primary-hover) 0%, var(--color-primary-dark) 100%);
+      }
+    }
+
+    &-secondary {
+      background-color: var(--color-black);
+      color: var(--color-white);
+
+      &:hover {
+        background-color: #333;
+      }
+    }
+  }
+</style>

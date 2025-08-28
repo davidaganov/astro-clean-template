@@ -1,0 +1,41 @@
+---
+import Head from "@/components/general/Head.astro"
+import Header from "@/components/general/Header.astro"
+import Footer from "@/components/general/Footer.astro"
+import "@/assets/styles/main.scss"
+
+const { title = "Название сайта", description = "Описание сайта" } = Astro.props
+---
+
+<html lang="ru">
+  <Head
+    title={title}
+    description={description}
+  />
+
+  <body>
+    <div class="wrapper">
+      <Header />
+      <main class="main">
+        <slot />
+      </main>
+      <Footer class="footer" />
+    </div>
+  </body>
+</html>
+
+<style lang="scss" is:global>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .main {
+    flex: 1;
+  }
+
+  .footer {
+    margin-top: auto;
+  }
+</style>
