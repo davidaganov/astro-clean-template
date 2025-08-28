@@ -1,10 +1,6 @@
-// General files
 @use "reset";
-@use "mixins";
 @use "variables";
-@use "fonts";
 
-// Global styles
 html,
 body {
   height: 100%;
@@ -15,18 +11,6 @@ body {
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
-}
-
-body {
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
 }
 
 .container {

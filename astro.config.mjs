@@ -1,8 +1,18 @@
-import { defineConfig } from "astro/config"
+import { defineConfig, fontProviders } from "astro/config"
 
 export default defineConfig({
   output: "static",
   compressHTML: false,
+
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Roboto",
+        cssVariable: "--font-roboto"
+      }
+    ]
+  },
 
   build: {
     inlineStylesheets: `never`,
@@ -14,19 +24,7 @@ export default defineConfig({
       minify: false,
       rollupOptions: {
         output: {
-          assetFileNames: (assetInfo) => {
-            const fileName = assetInfo.fileName || assetInfo.names?.[0] || "asset"
-
-            if (/\.(woff2?|ttf|eot)$/.test(fileName)) {
-              return `assets/resources/fonts/[name].[ext]`
-            }
-
-            if (fileName.endsWith(".css")) {
-              return `assets/style/main.[ext]`
-            }
-
-            return `assets/[name].[ext]`
-          }
+          assetFileNames: `assets/style/main.[ext]`
         }
       }
     }
