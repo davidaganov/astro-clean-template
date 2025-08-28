@@ -1,4 +1,4 @@
-# Руководство по стилю Astro Clean Template
+# Руководство для Astro Clean Template
 
 ## Обзор проекта
 
