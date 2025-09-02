@@ -4,10 +4,11 @@ export interface Props {
   size?: "sm" | "md" | "lg"
   href?: string
   type?: "button" | "submit" | "reset"
+  class?: string
 }
 
-const { variant = "primary", size = "md", href, type = "button" } = Astro.props
-const classes = `btn btn-${variant} btn-${size}`
+const { variant = "primary", size = "md", href, type = "button", class: className } = Astro.props
+const classes = `btn btn-${variant} btn-${size}${className ? ` ${className}` : ""}`
 ---
 
 {
@@ -30,11 +31,9 @@ const classes = `btn btn-${variant} btn-${size}`
 
 <style lang="scss" is:global>
   .btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 500;
     transition: all 0.3s ease;
     text-align: center;
@@ -43,12 +42,7 @@ const classes = `btn btn-${variant} btn-${size}`
     cursor: pointer;
 
     &:hover {
-      transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    &:active {
-      transform: translateY(0);
     }
 
     &:focus {
@@ -56,12 +50,27 @@ const classes = `btn btn-${variant} btn-${size}`
       outline-offset: 2px;
     }
 
+    &-sm {
+      height: 46px;
+      padding-inline: 18px;
+      font-size: 14px;
+      border-radius: 26px;
+    }
+
+    &-md {
+      height: 71px;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 75px;
+    }
+
     &-primary {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
-      color: var(--color-white);
+      background: var(--color-white);
+      color: var(--color-black);
 
       &:hover {
-        background: linear-gradient(135deg, var(--color-primary-hover) 0%, var(--color-primary-dark) 100%);
+        background: var(--color-primary);
+        color: var(--color-white);
       }
     }
 
