@@ -1,6 +1,4 @@
 ---
-import { Font } from "astro:assets"
-
 const { title = "Заголовок сайта", description = "" } = Astro.props
 ---
 
@@ -25,11 +23,6 @@ const { title = "Заголовок сайта", description = "" } = Astro.prop
       />
     )
   }
-
-  <Font
-    cssVariable="--font-roboto"
-    preload
-  />
 
   <link
     rel="icon"
