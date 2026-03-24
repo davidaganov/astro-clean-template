@@ -1,6 +1,5 @@
-import "./test.js"
+import { init } from "./test.js"
 
-// Инициализация при загрузке страницы
-document.addEventListener("DOMContentLoaded", function () {
-  test.init()
+document.addEventListener("DOMContentLoaded", () => {
+  init()
 })

@@ -1,8 +1,11 @@
 ---
-import Layout from "@/layouts/Layout.astro"
+import DefaultLayout from "@/layouts/DefaultLayout.astro"
 import HomePage from "@/components/pages/home/index.astro"
 ---
 
-<Layout title="Главная страница">
+<DefaultLayout
+  title="Astro Clean Template"
+  description="Static Astro starter: components, two root layouts, readable HTML and predictable assets in dist."
+>
   <HomePage />
-</Layout>
+</DefaultLayout>

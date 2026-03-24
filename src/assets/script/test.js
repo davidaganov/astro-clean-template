@@ -1,3 +1,3 @@
 export const init = () => {
-  console.log("test")
+  console.log("[astro-clean] client entry initialized")
 }

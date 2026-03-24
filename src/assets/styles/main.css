@@ -1,11 +1,13 @@
-@use "reset";
-@use "variables";
+@import "./reset.css";
+@import "./variables.css";
 
 html,
 body {
   height: 100%;
   font-family: var(--main-font);
-  color: var(--color-black);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.5;
 }
 
 html {
@@ -13,22 +15,26 @@ html {
   scrollbar-gutter: stable;
 }
 
+::selection {
+  background: var(--color-accent-soft);
+}
+
 .container {
   margin-left: auto;
   margin-right: auto;
 
   @media (min-width: 768px) {
-    max-width: var(--max-width, 1440px);
+    max-width: var(--max-width);
   }
 
   @media (min-width: 640px) {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   @media (max-width: 640px) {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 
