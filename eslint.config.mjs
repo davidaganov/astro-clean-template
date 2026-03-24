@@ -54,12 +54,5 @@ export default defineConfig(
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }
       ]
     }
-  },
-
-  {
-    files: ["src/layouts/*.astro"],
-    rules: {
-      "prettier/prettier": "off"
-    }
   }
 )

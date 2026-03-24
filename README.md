@@ -37,6 +37,14 @@ Layouts reference **`/assets/script/main.js`** with an inline `<script type="mod
 | `npm run format`       | Prettier write (respects `.prettierignore`)              |
 | `npm run format:check` | Prettier check only                                      |
 
+### Starter Configuration Commands
+
+| Command                   | Description                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------- |
+| `npm run config:template` | Restores `src/` to the full demo template (features, hero, etc.)                            |
+| `npm run config:clean`    | Restores `src/` to a minimal template with just the base layout and blank active pages      |
+| `npm run config:empty`    | Wipes the `src/` directory entirely, creating a completely empty folder for a scratch build |
+
 `PROD_BUILD=1` enables the production-style build (same as `npm run build:prod`). **`.env.example`** documents optional variables; copy to `.env` if you prefer env-based flags over npm scripts. It contains no secrets.
 
 Formatting and linting follow the same baseline as the author’s Vue/Nuxt projects (Prettier options + import sort), adapted for Astro: **`prettier-plugin-astro`** is loaded after **`@trivago/prettier-plugin-sort-imports`**, and ESLint uses **`eslint-plugin-astro`**, **`typescript-eslint`**, **`eslint-config-prettier`**, and **`eslint-plugin-prettier`**. Node globals apply to `*.mjs` config files; browser globals apply to `src/assets/script/**/*.js`.

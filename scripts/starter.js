@@ -1,9 +1,10 @@
+/* global process, console */
 import fs from "node:fs/promises"
 import path from "node:path"
 import readline from "node:readline"
 
 const args = process.argv.slice(2)
-const action = args[0]
+const action = args[0] // "clean" | "template" | "empty"
 
 const srcPath = path.resolve(process.cwd(), "src")
 const starterDir = path.resolve(process.cwd(), "starter")
@@ -34,19 +35,30 @@ async function copyDir(src, dest) {
 }
 
 async function runSwitch(type) {
-  const isClean = type === "clean"
-  const sourcePath = isClean ? cleanPath : templateBackupPath
-  const name = isClean ? "minimal template" : "full demo template"
+  let sourcePath = null
+  let name = ""
 
-  try {
-    await fs.access(sourcePath)
-  } catch (_e) {
-    console.error(`❌ Error: Source folder not found at ${sourcePath}`)
-    process.exit(1)
+  if (type === "clean") {
+    sourcePath = cleanPath
+    name = "minimal template"
+  } else if (type === "template") {
+    sourcePath = templateBackupPath
+    name = "full demo template"
+  } else if (type === "empty") {
+    name = "completely empty src directory"
+  }
+
+  if (sourcePath) {
+    try {
+      await fs.access(sourcePath)
+    } catch (_e) {
+      console.error(`❌ Error: Source folder not found at ${sourcePath}`)
+      process.exit(1)
+    }
   }
 
   const answer = await question(
-    `🚨 WARNING: This will DESTROY all current files in src/ and switch to the ${name}. Are you sure? (y/N): `
+    `🚨 WARNING: This will DESTROY all current files in src/ and switch to a ${name}. Are you sure? (y/N): `
   )
 
   if (answer.toLowerCase() !== "y") {
@@ -55,18 +67,34 @@ async function runSwitch(type) {
   }
 
   console.log(`🗑️ Deleting current src/...`)
-  await fs.rm(srcPath, { recursive: true, force: true })
+  try {
+    await fs.rm(srcPath, { recursive: true, force: true, maxRetries: 3, retryDelay: 500 })
+  } catch (err) {
+    if (err.code === "EBUSY" || err.code === "EPERM") {
+      console.error(`\n❌ Error: The src/ folder is locked by another process (EBUSY).`)
+      console.error(
+        `Please stop your dev server (Ctrl+C in terminal) and close open files from src/ before switching templates.\n`
+      )
+      process.exit(1)
+    }
+    throw err
+  }
 
-  console.log(`✨ Copying from ${isClean ? "starter/clean/" : "starter/template/"} to src/...`)
-  await copyDir(sourcePath, srcPath)
+  if (sourcePath) {
+    console.log(`✨ Copying from starter/${type}/ to src/...`)
+    await copyDir(sourcePath, srcPath)
+  } else {
+    console.log(`✨ Creating an empty src/ directory...`)
+    await fs.mkdir(srcPath, { recursive: true })
+  }
 
   console.log(`\n✅ Success! The ${name} has been loaded into src/`)
   process.exit(0)
 }
 
-if (action === "clean" || action === "restore") {
+if (["clean", "template", "empty"].includes(action)) {
   runSwitch(action).catch(console.error)
 } else {
-  console.log("Usage: node scripts/starter.js [clean|restore]")
+  console.log("Usage: node scripts/starter.js [clean|template|empty]")
   process.exit(1)
 }

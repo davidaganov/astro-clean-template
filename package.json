@@ -1,6 +1,6 @@
 {
   "name": "astro-clean-template",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Astro starter for static sites with handoff-oriented output: readable HTML, one CSS bundle, stable script paths under dist/, and multiple root layouts.",
   "type": "module",
   "keywords": [
@@ -29,8 +29,9 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "clean": "node scripts/starter.js clean",
-    "restore": "node scripts/starter.js restore",
+    "config:template": "node scripts/starter.js template",
+    "config:clean": "node scripts/starter.js clean",
+    "config:empty": "node scripts/starter.js empty",
     "dev": "astro dev",
     "build": "astro build",
     "build:prod": "cross-env PROD_BUILD=1 astro build",
