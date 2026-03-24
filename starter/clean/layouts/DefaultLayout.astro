@@ -1,7 +1,5 @@
 ---
 import Head from "@/components/general/Head.astro"
-import Header from "@/components/general/Header.astro"
-import Footer from "@/components/general/Footer.astro"
 import "@/assets/styles/main.css"
 
 const { title = "Astro Clean", description = "" } = Astro.props
@@ -12,16 +10,12 @@ const { title = "Astro Clean", description = "" } = Astro.props
     title={title}
     description={description}
   />
-
-  <body class="subpage">
+  <body>
     <div class="wrapper">
-      <Header />
-      <main class="main subpage__main">
+      <main class="main">
         <slot />
       </main>
-      <Footer class="footer" />
     </div>
-
     <script
       is:inline
       type="module"
@@ -32,11 +26,15 @@ const { title = "Astro Clean", description = "" } = Astro.props
 </html>
 
 <style is:global>
-  .subpage {
-    background: var(--color-bg);
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
   }
 
-  .subpage__main {
-    padding-block: 32px 48px;
+  .main {
+    flex: 1;
   }
 </style>

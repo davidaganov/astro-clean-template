@@ -1,0 +1,108 @@
+---
+import Button from "@/components/base/Button.astro"
+---
+
+<section
+  class="hero"
+  aria-labelledby="hero-title"
+>
+  <div class="container hero__inner">
+    <span class="hero__kicker">Astro Starter</span>
+    <h1
+      id="hero-title"
+      class="hero__title"
+    >
+      Astro Clean Template
+    </h1>
+    <p class="hero__lead">
+      An authoring-focused Astro starter that emits predictable <code>HTML/CSS/JS</code> paths under <code
+      >
+        dist/
+      </code>. Built to easily hand off or embed in any CMS.
+    </p>
+    <div class="hero__actions">
+      <Button
+        variant="primary"
+        size="md"
+        href="#features"
+      >
+        Get Started
+      </Button>
+      <Button
+        variant="secondary"
+        size="md"
+        href="https://github.com/davidaganov/astro-clean-template"
+      >
+        GitHub
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  .hero {
+    position: relative;
+    padding: clamp(96px, 16vw, 144px) 0 clamp(64px, 12vw, 96px);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+
+  .hero__kicker {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero__title {
+    margin: 0 0 16px;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.65) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero__lead {
+    margin: 0 0 36px;
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.6;
+    color: var(--color-muted);
+    text-wrap: balance;
+
+    & code {
+      font-family: ui-monospace, monospace;
+      font-size: 0.88em;
+      padding: 0.15em 0.35em;
+      border-radius: 6px;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+</style>

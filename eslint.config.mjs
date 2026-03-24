@@ -8,7 +8,14 @@ import tseslint from "typescript-eslint"
 
 export default defineConfig(
   {
-    ignores: ["dist/**", ".astro/**", "node_modules/**", "package-lock.json"]
+    ignores: [
+      "dist/**",
+      ".astro/**",
+      "node_modules/**",
+      "package-lock.json",
+      "scripts/**",
+      "starter/**"
+    ]
   },
 
   {
@@ -26,11 +33,8 @@ export default defineConfig(
   },
 
   eslint.configs.recommended,
-
   ...tseslint.configs.recommended,
-
   ...eslintPluginAstro.configs.recommended,
-
   eslintConfigPrettier,
 
   {

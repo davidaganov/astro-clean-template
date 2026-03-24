@@ -29,6 +29,8 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "clean": "node scripts/starter.js clean",
+    "restore": "node scripts/starter.js restore",
     "dev": "astro dev",
     "build": "astro build",
     "build:prod": "cross-env PROD_BUILD=1 astro build",
