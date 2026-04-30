@@ -1,6 +1,6 @@
 {
   "name": "astro-clean-template",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Astro starter for static sites with handoff-oriented output: readable HTML, one CSS bundle, stable script paths under dist/, and multiple root layouts.",
   "type": "module",
   "keywords": [
@@ -29,9 +29,6 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "config:template": "node scripts/starter.js template",
-    "config:clean": "node scripts/starter.js clean",
-    "config:empty": "node scripts/starter.js empty",
     "dev": "astro dev",
     "build": "astro build",
     "build:prod": "cross-env PROD_BUILD=1 astro build",
@@ -43,23 +40,24 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "astro": "^6.0.8"
+    "@mannisto/astro-i18n": "^1.1.0",
+    "astro": "^6.2.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.6.0",
     "cross-env": "^10.1.0",
-    "esbuild": "^0.27.4",
-    "eslint": "^10.1.0",
+    "esbuild": "^0.28.0",
+    "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-astro": "^1.6.0",
+    "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-prettier": "^5.5.5",
-    "globals": "^17.4.0",
-    "prettier": "^3.8.1",
+    "globals": "^17.5.0",
+    "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.57.2",
-    "vite-plugin-static-copy": "^4.0.0"
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.1",
+    "vite-plugin-static-copy": "^4.1.0"
   }
 }

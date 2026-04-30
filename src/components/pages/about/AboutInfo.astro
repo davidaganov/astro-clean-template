@@ -1,0 +1,53 @@
+---
+import { useI18n } from "@/utils/i18n"
+
+const t = useI18n(Astro.url)
+
+const features = [
+  { icon: "🚀", text: t("about.features.astro") },
+  { icon: "🎨", text: t("about.features.tailwind") },
+  { icon: "⚡", text: t("about.features.performance") }
+]
+---
+
+<div class="about-info">
+  {
+    features.map((feature) => (
+      <div class="about-info__item">
+        <span class="about-info__icon">{feature.icon}</span>
+        <span class="about-info__text">{feature.text}</span>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .about-info {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .about-info__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+  }
+
+  .about-info__icon {
+    font-size: 20px;
+  }
+
+  .about-info__text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #d1d5db;
+  }
+</style>

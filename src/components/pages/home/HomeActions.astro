@@ -1,0 +1,46 @@
+---
+import { useI18n } from "@/utils/i18n"
+import UiButton from "@/components/ui/UiButton.astro"
+
+const t = useI18n(Astro.url)
+---
+
+<div class="actions">
+  <UiButton
+    type="primary"
+    class="actions__btn"
+  >
+    {t("home.actions.getStarted")}
+  </UiButton>
+  <UiButton
+    type="outline"
+    href="/about"
+    class="actions__btn"
+  >
+    {t("home.actions.readMore")}
+  </UiButton>
+</div>
+
+<style>
+  .actions {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 32px;
+    max-width: 180px;
+  }
+
+  .actions__btn {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    .actions {
+      flex-direction: row;
+      gap: 16px;
+      margin-top: 48px;
+      max-width: 340px;
+    }
+  }
+</style>

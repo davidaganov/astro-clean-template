@@ -1,0 +1,89 @@
+---
+import UiLink from "./UiLink.astro"
+
+interface Props {
+  type?: "primary" | "secondary" | "outline"
+  href?: string
+  class?: string
+}
+
+const { type = "primary", href, class: className } = Astro.props
+---
+
+{
+  href ? (
+    <UiLink
+      href={href}
+      class:list={["btn", `btn--${type}`, className]}
+    >
+      <span class="btn__text">
+        <slot />
+      </span>
+    </UiLink>
+  ) : (
+    <button
+      type="button"
+      class:list={["btn", `btn--${type}`, className]}
+    >
+      <span class="btn__text">
+        <slot />
+      </span>
+    </button>
+  )
+}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn--primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+
+  .btn--primary:hover {
+    filter: brightness(1.1);
+  }
+
+  .btn--secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btn--secondary:hover {
+    filter: brightness(1.1);
+  }
+
+  .btn--outline {
+    background-color: var(--color-primary-10);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary-50);
+  }
+
+  .btn--outline:hover {
+    background-color: var(--color-primary-20);
+    border-color: var(--color-primary);
+  }
+
+  .btn__text {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+</style>

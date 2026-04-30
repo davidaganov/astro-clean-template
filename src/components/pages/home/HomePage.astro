@@ -1,0 +1,21 @@
+---
+import HomeHero from "./HomeHero.astro"
+import HomeActions from "./HomeActions.astro"
+---
+
+<div class="home-page">
+  <HomeHero />
+  <HomeActions />
+</div>
+
+<style>
+  .home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 0 24px;
+    text-align: center;
+  }
+</style>

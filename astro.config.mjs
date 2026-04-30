@@ -1,3 +1,4 @@
+import i18n from "@mannisto/astro-i18n"
 import { build } from "esbuild"
 import fs from "node:fs"
 import path from "node:path"
@@ -49,7 +50,17 @@ export default defineConfig({
   output: "static",
   compressHTML: prod,
 
-  integrations: [prodBundleClientScript()],
+  integrations: [
+    i18n({
+      locales: [
+        { code: "en", name: "English", endonym: "English" },
+        { code: "ru", name: "Russian", endonym: "Русский" }
+      ],
+      defaultLocale: "en",
+      translations: "./src/i18n/locales"
+    }),
+    prodBundleClientScript()
+  ],
 
   build: {
     inlineStylesheets: "never",

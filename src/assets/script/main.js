@@ -1,5 +1,5 @@
-import { init } from "./test.js"
+import { initI18n } from "./i18n.js"
 
 document.addEventListener("DOMContentLoaded", () => {
-  init()
+  initI18n()
 })
