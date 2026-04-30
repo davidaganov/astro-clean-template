@@ -20,6 +20,13 @@ const site = Astro.site ?? Astro.url.origin
     <LocaleCookie locale={locale} />
     <LocaleHreflang url={Astro.url} site={site} />
     <title>{title}</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicons/site.webmanifest" />
+
     <link rel="stylesheet" href="/src/assets/styles/main.css" />
     <script is:inline type="module" src="/src/assets/script/main.js"></script>
   </head>
