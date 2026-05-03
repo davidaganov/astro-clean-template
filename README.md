@@ -1,62 +1,82 @@
 # Astro Clean Template
 
-A performance-focused Astro starter for predictable static sites. Designed for clean HTML/CSS handoff or seamless integration into CMS themes.
+Performance-oriented Astro starter focused on predictable static output: component-based pages, a single handoff-friendly CSS bundle, and optional production minification.
 
-## Key Features
+**Repository:** [github.com/davidaganov/astro-clean-template](https://github.com/davidaganov/astro-clean-template)
 
-- **Component Authoring**: Build with components and shared layouts without duplicating markup.
-- **Single Bundle CSS**: Generates a single, handoff-friendly CSS file in `dist/assets/style/`.
-- **Modern CSS**: Native nesting support without the need for Sass or preprocessors.
-- **Hybrid JS Pipeline**: Choice between a multi-file handoff build or a single minified production bundle.
-- **Image Optimization**: Automated multi-format asset generation (AVIF/WebP) via `astro:assets`.
-- **Code Quality**: Pre-configured ESLint (Flat Config) and Prettier integration.
+## Recommended setup: WebStack CLI
 
-## Prerequisites
+The preferred way to scaffold a new project is **[`@davidaganov/stack`](https://www.npmjs.com/package/@davidaganov/stack)** ([CLI source](https://github.com/davidaganov/stack)). It clones this template from GitHub (or uses a local checkout), applies **Empty**, **Recommended**, or **Custom**, and merges `.webstack` layers.
 
-- **Node.js** (v22.12 or higher / Astro 6+)
+```bash
+npx @davidaganov/stack
+```
 
-## Quick Start
+Select **Astro Clean Template**, then pick:
 
-1.  **Install dependencies**:
-    ```bash
-    npm install
-    ```
-2.  **Start development server**:
-    ```bash
-    npm run dev
-    ```
-3.  **Handoff Build** (No minification):
-    ```bash
-    npm run build
-    ```
-4.  **Production Build** (Bundled & Minified):
-    ```bash
-    npm run build:prod
-    ```
+| Mode            | What you get                                                                                                            |
+| :-------------- | :---------------------------------------------------------------------------------------------------------------------- |
+| **Empty**       | Minimal app from `.webstack/template-empty` only (no demo pages slice).                                                 |
+| **Recommended** | Demo pages plus default optional choices from the wizard (for this stack: **i18n** enabled via `@mannisto/astro-i18n`). |
+| **Custom**      | Same baseline demo slice; you toggle **i18n** on or off.                                                                |
 
-## Build Pipeline
+With **i18n** enabled, the generator adds localized routes (`src/pages/[locale]/…`), removes duplicate non-localized entry pages where appropriate, and patches layout, links, and `404.astro`. Without **i18n**, routing stays at the root `src/pages/` tree with static English strings.
 
-The template supports two distinct build strategies:
+Maintainers: **[GUIDLINE.md](https://github.com/davidaganov/stack/blob/main/GUIDLINE.md)** in [davidaganov/stack](https://github.com/davidaganov/stack).
 
-- **Handoff** (`npm run build`): Copies JS/CSS as-is. Useful for developers who need to manually edit the output or integrate it into other systems.
-- **Production** (`npm run build:prod`): Bundles and minifies all assets using esbuild. Best for direct deployment to static hosting.
+---
+
+## Manual setup (clone this repository)
+
+Use this path when you work inside the template repo itself:
+
+1. **Install dependencies:** `npm install`
+2. **Development:** `npm run dev`
+3. **Handoff build** (no minification): `npm run build`
+4. **Production build** (bundled and minified): `npm run build:prod`
+
+Requires **Node.js v22.12+** (Astro 6).
+
+---
+
+## Capabilities
+
+- Component-based authoring with shared layouts.
+- Single CSS bundle under `dist/assets/style/` for handoff.
+- Modern CSS with native nesting (no Sass required).
+- Client JS: multi-file handoff path or one minified bundle for production.
+- Images via `astro:assets` (AVIF/WebP).
+- ESLint (flat config) and Prettier.
+
+---
+
+## Build modes
+
+- **`npm run build`** — Handoff-oriented output (readable assets).
+- **`npm run build:prod`** — Optimized bundle via esbuild for direct static hosting.
+
+---
 
 ## Commands
 
-| Command | Description |
-| :--- | :--- |
-| `npm run dev` | Starts the local development server |
-| `npm run build` | Generates unminified, handoff-ready static files |
-| `npm run build:prod` | Generates fully optimized and minified production build |
-| `npm run preview` | Previews the generated `dist/` folder locally |
-| `npm run lint:fix` | Automatically fixes ESLint and Prettier issues |
+| Command              | Description               |
+| :------------------- | :------------------------ |
+| `npm run dev`        | Dev server                |
+| `npm run build`      | Handoff static build      |
+| `npm run build:prod` | Minified production build |
+| `npm run preview`    | Preview `dist/`           |
+| `npm run lint:fix`   | ESLint + Prettier fixes   |
 
-## Project Structure
+---
 
-- `src/pages/` — Routing and entry points.
-- `src/components/` — Reusable Astro components.
-- `src/assets/script/` — Client-side JavaScript (bundled on prod).
-- `src/assets/styles/` — Global CSS and design tokens.
+## Layout
+
+- `src/pages/` — Routes and entries.
+- `src/components/` — Astro components.
+- `src/assets/script/` — Client-side JS.
+- `src/assets/styles/` — Global CSS and tokens.
+
+---
 
 ## License
 
