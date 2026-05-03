@@ -1,0 +1,67 @@
+---
+// @webstack:imports
+import AboutInfo from "./AboutInfo.astro"
+import UiButton from "@/components/ui/UiButton.astro"
+
+const heading = "About"
+const description = "Learn more about this Astro template and its features."
+const returnLabel = "← Return"
+---
+
+<div class="about-page">
+  <div class="about-page__header">
+    <h1 class="about-page__title">{heading}</h1>
+  </div>
+
+  <p class="about-page__description">{description}</p>
+
+  <AboutInfo />
+
+  <div class="about-page__btn">
+    <UiButton type="outline" href="/">
+      {returnLabel}
+    </UiButton>
+  </div>
+</div>
+
+<style>
+  .about-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 0 32px;
+    text-align: center;
+  }
+
+  .about-page__header {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .about-page__title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .about-page__description {
+    font-size: 1rem;
+    color: var(--color-muted);
+    max-width: 280px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .about-page__btn {
+    width: 100%;
+    max-width: 320px;
+    margin: 48px auto 0;
+  }
+</style>

@@ -1,0 +1,217 @@
+{
+  "name": "i18n",
+  "description": "Multi-language support with @mannisto/astro-i18n",
+  "requires": ["demo-pages"],
+  "copy": [
+    "src/i18n",
+    "src/pages/[locale]",
+    "src/components/ui/UiLanguageSwitcher.astro",
+    "src/utils/i18n.ts",
+    "src/assets/script/i18n.js"
+  ],
+  "remove": [
+    "src/pages/index.astro",
+    "src/pages/about.astro"
+  ],
+  "patches": [
+    {
+      "file": "package.json",
+      "target": "\"dependencies\": {",
+      "action": "insert-after",
+      "content": "    \"@mannisto/astro-i18n\": \"^1.0.0\","
+    },
+    {
+      "file": "astro.config.mjs",
+      "target": "// @webstack:imports",
+      "action": "replace-marker",
+      "content": "import i18n from \"@mannisto/astro-i18n\""
+    },
+    {
+      "file": "astro.config.mjs",
+      "target": "// @webstack:integrations",
+      "action": "replace-marker",
+      "content": "    i18n({\n      locales: [\n        { code: \"en\", name: \"English\", endonym: \"English\" },\n        { code: \"ru\", name: \"Russian\", endonym: \"\\u0420\\u0443\\u0441\\u0441\\u043a\\u0438\\u0439\" }\n      ],\n      defaultLocale: \"en\",\n      translations: \"./src/i18n/locales\"\n    }),"
+    },
+    {
+      "file": "src/layouts/DefaultLayout.astro",
+      "target": "// @webstack:imports",
+      "action": "replace-marker",
+      "content": "import { Locale } from \"@mannisto/astro-i18n/runtime\"\nimport { LocaleCookie, LocaleHreflang } from \"@mannisto/astro-i18n/components\"\nimport UiLanguageSwitcher from \"@/components/ui/UiLanguageSwitcher.astro\""
+    },
+    {
+      "file": "src/layouts/DefaultLayout.astro",
+      "target": "// @webstack:vars",
+      "action": "replace-marker",
+      "content": "const locale = Locale.from(Astro.url)\nconst site = Astro.site ?? Astro.url.origin"
+    },
+    {
+      "file": "src/layouts/DefaultLayout.astro",
+      "target": "lang=\"en\"",
+      "action": "replace",
+      "content": "lang={locale}"
+    },
+    {
+      "file": "src/layouts/DefaultLayout.astro",
+      "target": "<!-- @webstack:head -->",
+      "action": "replace-marker",
+      "content": "    <LocaleCookie locale={locale} />\n    <LocaleHreflang url={Astro.url} site={site} />"
+    },
+    {
+      "file": "src/layouts/DefaultLayout.astro",
+      "target": "<!-- @webstack:ui -->",
+      "action": "replace-marker",
+      "content": "<UiLanguageSwitcher />"
+    },
+    {
+      "file": "src/components/pages/home/HomeHero.astro",
+      "target": "// @webstack:imports",
+      "action": "replace-marker",
+      "content": "import { t } from \"@mannisto/astro-i18n/runtime\""
+    },
+    {
+      "file": "src/components/pages/home/HomeHero.astro",
+      "target": "const badge = `v${version}`",
+      "action": "replace",
+      "content": "const badge = t(\"home.badge\", { version })"
+    },
+    {
+      "file": "src/components/pages/home/HomeHero.astro",
+      "target": "const title = \"Astro Clean\"",
+      "action": "replace",
+      "content": "const title = t(\"home.hero.title\")"
+    },
+    {
+      "file": "src/components/pages/home/HomeHero.astro",
+      "target": "const subtitle = \"Template\"",
+      "action": "replace",
+      "content": "const subtitle = t(\"home.hero.subtitle\")"
+    },
+    {
+      "file": "src/components/pages/home/HomeHero.astro",
+      "target": "const description = \"A modern Astro starter template with dark theme and violet accents.\"",
+      "action": "replace",
+      "content": "const description = t(\"home.hero.description\")"
+    },
+    {
+      "file": "src/components/pages/home/HomeActions.astro",
+      "target": "// @webstack:imports",
+      "action": "replace-marker",
+      "content": "import { t } from \"@mannisto/astro-i18n/runtime\""
+    },
+    {
+      "file": "src/components/pages/home/HomeActions.astro",
+      "target": "const getStartedLabel = \"Get Started\"",
+      "action": "replace",
+      "content": "const getStartedLabel = t(\"home.actions.getStarted\")"
+    },
+    {
+      "file": "src/components/pages/home/HomeActions.astro",
+      "target": "const readMoreLabel = \"Read More\"",
+      "action": "replace",
+      "content": "const readMoreLabel = t(\"home.actions.readMore\")"
+    },
+    {
+      "file": "src/components/pages/about/AboutPage.astro",
+      "target": "// @webstack:imports",
+      "action": "replace-marker",
+      "content": "import { t } from \"@mannisto/astro-i18n/runtime\""
+    },
+    {
+      "file": "src/components/pages/about/AboutPage.astro",
+      "target": "const heading = \"About\"",
+      "action": "replace",
+      "content": "const heading = t(\"about.title\")"
+    },
+    {
+      "file": "src/components/pages/about/AboutPage.astro",
+      "target": "const description = \"Learn more about this Astro template and its features.\"",
+      "action": "replace",
+      "content": "const description = t(\"about.description\")"
+    },
+    {
+      "file": "src/components/pages/about/AboutPage.astro",
+      "target": "const returnLabel = \"← Return\"",
+      "action": "replace",
+      "content": "const returnLabel = t(\"about.returnButton\")"
+    },
+    {
+      "file": "src/components/pages/about/AboutInfo.astro",
+      "target": "// @webstack:imports",
+      "action": "replace-marker",
+      "content": "import { t } from \"@mannisto/astro-i18n/runtime\""
+    },
+
+    {
+      "file": "src/components/pages/about/AboutInfo.astro",
+      "target": "text: \"Astro framework for fast static sites\"",
+      "action": "replace",
+      "content": "text: t(\"about.features.astro\")"
+    },
+    {
+      "file": "src/components/pages/about/AboutInfo.astro",
+      "target": "text: \"Tailwind CSS with custom violet theme\"",
+      "action": "replace",
+      "content": "text: t(\"about.features.tailwind\")"
+    },
+    {
+      "file": "src/components/pages/about/AboutInfo.astro",
+      "target": "text: \"Lightning fast performance\"",
+      "action": "replace",
+      "content": "text: t(\"about.features.performance\")"
+    },
+    {
+      "file": "src/components/ui/UiLink.astro",
+      "target": "// @webstack:imports",
+      "action": "replace-marker",
+      "content": "import { Locale } from \"@mannisto/astro-i18n/runtime\""
+    },
+    {
+      "file": "src/components/ui/UiLink.astro",
+      "target": "// @webstack:vars",
+      "action": "replace-marker",
+      "content": "const locale = Locale.from(Astro.url)"
+    },
+    {
+      "file": "src/components/ui/UiLink.astro",
+      "target": "const normalizedHref = isExternal ? href : href",
+      "action": "replace",
+      "content": "const normalizedHref = isExternal ? href : Locale.url(locale, href)"
+    },
+    {
+      "file": "src/pages/404.astro",
+      "target": "// @webstack:imports",
+      "action": "replace-marker",
+      "content": "import { LocaleRedirect } from \"@mannisto/astro-i18n/components\"\nimport { Locale } from \"@mannisto/astro-i18n/runtime\""
+    },
+    {
+      "file": "src/pages/404.astro",
+      "target": "// @webstack:vars",
+      "action": "replace-marker",
+      "content": "const locale = Locale.from(Astro.url)"
+    },
+    {
+      "file": "src/pages/404.astro",
+      "target": "lang=\"en\"",
+      "action": "replace",
+      "content": "lang={locale}"
+    },
+    {
+      "file": "src/pages/404.astro",
+      "target": "<!-- @webstack:head -->",
+      "action": "replace-marker",
+      "content": "    <LocaleRedirect />"
+    },
+    {
+      "file": "src/assets/script/main.js",
+      "target": "document.addEventListener",
+      "action": "insert-before",
+      "content": "import { initI18n } from \"./i18n.js\"\n"
+    },
+    {
+      "file": "src/assets/script/main.js",
+      "target": "// @webstack:script-init",
+      "action": "replace-marker",
+      "content": "  initI18n()"
+    }
+  ]
+}

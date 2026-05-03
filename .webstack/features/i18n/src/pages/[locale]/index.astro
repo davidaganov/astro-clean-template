@@ -1,0 +1,18 @@
+---
+import { Locale } from "@mannisto/astro-i18n/runtime"
+import { useI18n } from "@/utils/i18n"
+import DefaultLayout from "@/layouts/DefaultLayout.astro"
+import HomePage from "@/components/pages/home/HomePage.astro"
+
+export const getStaticPaths = () => {
+  return Locale.supported.map((code) => ({
+    params: { locale: code }
+  }))
+}
+
+const t = useI18n(Astro.url)
+---
+
+<DefaultLayout title={t("home.hero.title")}>
+  <HomePage />
+</DefaultLayout>

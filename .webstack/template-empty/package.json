@@ -3,15 +3,6 @@
   "version": "1.0.2",
   "description": "Astro starter for static sites with handoff-oriented output: readable HTML, one CSS bundle, stable script paths under dist/, and multiple root layouts.",
   "type": "module",
-  "keywords": [
-    "astro",
-    "astro-template",
-    "static-site",
-    "vite",
-    "handoff",
-    "html",
-    "css"
-  ],
   "homepage": "https://github.com/davidaganov/astro-clean-template#readme",
   "bugs": {
     "url": "https://github.com/davidaganov/astro-clean-template/issues"
@@ -41,7 +32,6 @@
     "generate:favicons": "node scripts/generate-favicons.mjs"
   },
   "dependencies": {
-    "@mannisto/astro-i18n": "^1.1.0",
     "astro": "^6.2.1"
   },
   "devDependencies": {

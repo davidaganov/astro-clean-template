@@ -1,0 +1,25 @@
+---
+// @webstack:imports
+
+interface Props extends astroHTML.JSX.AnchorHTMLAttributes {
+  href: string
+}
+
+const { href, ...attrs } = Astro.props
+
+const isExternal =
+  href.startsWith("http://") ||
+  href.startsWith("https://") ||
+  href.startsWith("mailto:") ||
+  href.startsWith("tel:")
+
+// @webstack:vars
+const normalizedHref = isExternal ? href : href
+---
+
+<a
+  href={normalizedHref}
+  {...attrs}
+>
+  <slot />
+</a>

@@ -1,0 +1,70 @@
+---
+import { Locale } from "@mannisto/astro-i18n/runtime"
+
+const currentLocale = Locale.from(Astro.url)
+const locales = Locale.get()
+---
+
+<div class="lang-switcher">
+  {locales.map((locale) => (
+    <button
+      class:list={[
+        "lang-btn",
+        { "lang-btn--active": currentLocale === locale.code }
+      ]}
+      data-locale={locale.code}
+    >
+      <span class="lang-text">{locale.code}</span>
+    </button>
+  ))}
+</div>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    padding: 4px;
+    backdrop-filter: blur(12px);
+  }
+
+  .lang-btn {
+    padding: 4px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid transparent;
+    outline: none;
+  }
+
+  .lang-btn:not(.lang-btn--active) {
+    opacity: 0.6;
+  }
+
+  .lang-btn:not(.lang-btn--active):hover {
+    opacity: 1;
+  }
+
+  .lang-btn--active {
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+
+  .lang-text {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #9ca3af;
+  }
+
+  .lang-btn--active .lang-text {
+    color: #8b5cf6;
+  }
+</style>

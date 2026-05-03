@@ -1,0 +1,10 @@
+{
+  "name": "demo-pages",
+  "description": "Full build with demo pages and components.",
+  "copy": [
+    "src/components/pages",
+    "src/layouts/DefaultLayout.astro",
+    "src/pages/index.astro",
+    "src/pages/about.astro"
+  ]
+}
