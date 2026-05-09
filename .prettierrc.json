@@ -10,7 +10,7 @@
   "bracketSameLine": false,
   "singleAttributePerLine": true,
   "htmlWhitespaceSensitivity": "ignore",
-  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-astro"],
+  "plugins": ["prettier-plugin-astro", "@trivago/prettier-plugin-sort-imports"],
   "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
   "importOrderSideEffects": false,
   "importOrderSeparation": false,
