@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description": "Astro starter for static sites with handoff-oriented output: readable HTML, one CSS bundle, stable script paths under dist/, and multiple root layouts.",
   "type": "module",
-  "homepage": "https://github.com/davidaganov/astro-clean-template#readme",
+  "homepage": "https://aganov.dev/en/docs/guides/starters/astro-clean-template",
   "bugs": {
     "url": "https://github.com/davidaganov/astro-clean-template/issues"
   },
@@ -13,7 +13,7 @@
   },
   "author": {
     "name": "David Aganov",
-    "url": "https://github.com/davidaganov"
+    "url": "https://aganov.dev"
   },
   "license": "MIT",
   "engines": {

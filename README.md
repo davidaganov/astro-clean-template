@@ -3,57 +3,62 @@
 Performance-oriented Astro starter focused on predictable static output: component-based pages, a single handoff-friendly CSS bundle, and optional production minification.
 
 **Repository:** [github.com/davidaganov/astro-clean-template](https://github.com/davidaganov/astro-clean-template)
+**Catalog starters:** [github.com/davidaganov/stack](https://aganov.dev/en/docs/guides/starters)
 
-## Recommended setup: WebStack CLI
+## Recommended setup
 
-The preferred way to scaffold a new project is **[`@davidaganov/stack`](https://www.npmjs.com/package/@davidaganov/stack)** ([CLI source](https://github.com/davidaganov/stack)). It clones this template from GitHub (or uses a local checkout), applies **Empty**, **Recommended**, or **Custom**, and merges `.webstack` layers.
+Use **[@davidaganov/stack](https://www.npmjs.com/package/@davidaganov/stack)**:
 
 ```bash
 npx @davidaganov/stack
 ```
 
-Select **Astro Clean Template**, then pick:
+Pick **Astro Clean Template**, then:
 
-| Mode            | What you get                                                                                                            |
-| :-------------- | :---------------------------------------------------------------------------------------------------------------------- |
-| **Empty**       | Minimal app from `.webstack/template-empty` only (no demo pages slice).                                                 |
-| **Recommended** | Demo pages plus default optional choices from the wizard (for this stack: **i18n** enabled via `@mannisto/astro-i18n`). |
-| **Custom**      | Same baseline demo slice; you toggle **i18n** on or off.                                                                |
-
-With **i18n** enabled, the generator adds localized routes (`src/pages/[locale]/…`), removes duplicate non-localized entry pages where appropriate, and patches layout, links, and `404.astro`. Without **i18n**, routing stays at the root `src/pages/` tree with static English strings.
-
-Maintainers: **[GUIDLINE.md](https://github.com/davidaganov/stack/blob/main/GUIDLINE.md)** in [davidaganov/stack](https://github.com/davidaganov/stack).
+| Mode            | What you get                                           |
+| :-------------- | :----------------------------------------------------- |
+| **Empty**       | Minimal app from `.webstack/template-empty`.           |
+| **Recommended** | Demo pages plus **i18n** (via `@mannisto/astro-i18n`). |
+| **Custom**      | Demo pages; toggle **i18n** independently.             |
 
 ---
 
-## Manual setup (clone this repository)
+## Manual setup
 
-Use this path when you work inside the template repo itself:
-
-1. **Install dependencies:** `npm install`
-2. **Development:** `npm run dev`
-3. **Handoff build** (no minification): `npm run build`
-4. **Production build** (bundled and minified): `npm run build:prod`
-
-Requires **Node.js v22.12+** (Astro 6).
+1. `git clone https://github.com/davidaganov/astro-clean-template.git`
+2. `cd astro-clean-template`
+3. `npm install`
+4. `npm run dev`
+5. `npm run build` for production assets.
 
 ---
 
-## Capabilities
+## Prerequisites
+
+- **Node.js** v22+.
+
+---
+
+## Internationalization
+
+Locale JSON under `src/i18n/locales/`. Typical usage:
+
+```typescript
+import { useI18n } from "@/utils/i18n"
+
+const t = useI18n(Astro.url)
+t("home.hero.title")
+```
+
+`npm run translate` runs [Polyglot Keeper](https://aganov.dev/en/docs/about/projects/polyglot-keeper) sync when the **i18n** layer is present.
+
+## Features
 
 - Component-based authoring with shared layouts.
 - Single CSS bundle under `dist/assets/style/` for handoff.
 - Modern CSS with native nesting (no Sass required).
 - Client JS: multi-file handoff path or one minified bundle for production.
 - Images via `astro:assets` (AVIF/WebP).
-- ESLint (flat config) and Prettier.
-
----
-
-## Build modes
-
-- **`npm run build`** — Handoff-oriented output (readable assets).
-- **`npm run build:prod`** — Optimized bundle via esbuild for direct static hosting.
 
 ---
 
@@ -80,4 +85,4 @@ Requires **Node.js v22.12+** (Astro 6).
 
 ## License
 
-MIT © David Aganov
+MIT © [David Aganov](https://aganov.dev/en)
