@@ -1,12 +1,23 @@
 import { favicons } from "favicons"
-import fs from "fs/promises"
-import path from "path"
+import fs from "node:fs/promises"
+import path from "node:path"
 
-const source = "public/favicon.src.png" // Source image
-const dest = "public/favicons" // Output directory
+interface ManifestIcon {
+  src: string
+  sizes: string
+  types?: string
+}
+
+interface Manifest {
+  icons: ManifestIcon[]
+  [key: string]: unknown
+}
+
+const source = "public/favicon.src.png"
+const dest = "public/favicons"
 
 const configuration = {
-  path: "/favicons/", // Path for icons in the manifest/html
+  path: "/favicons/",
   appName: "Astro Clean Template",
   appShortName: "AstroClean",
   appDescription: "A clean starter for Astro projects.",
@@ -22,19 +33,18 @@ const configuration = {
   }
 }
 
-async function generate() {
+async function generate(): Promise<void> {
   try {
     console.log(`Generating favicons from ${source}...`)
 
-    // Ensure destination directory exists
     await fs.mkdir(dest, { recursive: true })
 
-    // Check if source exists
     try {
       await fs.access(source)
     } catch (e) {
       console.error(
-        `Error: Source file ${source} not found. Please place your master icon there.`
+        `Error: Source file ${source} not found. Please place your master icon there.`,
+        e
       )
       return
     }
@@ -50,7 +60,6 @@ async function generate() {
       "android-chrome-512x512.png"
     ]
 
-    // Write images
     for (const image of response.images) {
       if (KEEP_IMAGES.includes(image.name)) {
         await fs.writeFile(path.join(dest, image.name), image.contents)
@@ -58,24 +67,18 @@ async function generate() {
       }
     }
 
-    // Write files (manifest, browserconfig)
     for (const file of response.files) {
       let fileName = file.name
       if (fileName === "manifest.webmanifest") fileName = "site.webmanifest"
 
       if (fileName === "site.webmanifest") {
-        // Filter manifest icons to only keep 192 and 512
-        const manifest = JSON.parse(file.contents)
+        const manifest = JSON.parse(file.contents.toString()) as Manifest
         manifest.icons = manifest.icons.filter((icon) =>
           ["192x192", "512x512"].includes(icon.sizes)
         )
-        await fs.writeFile(
-          path.join(dest, fileName),
-          JSON.stringify(manifest, null, 2)
-        )
+        await fs.writeFile(path.join(dest, fileName), JSON.stringify(manifest, null, 2))
         console.log(`Generated: ${fileName} (filtered)`)
       } else if (fileName === "browserconfig.xml") {
-        // Skip browserconfig
         continue
       } else {
         await fs.writeFile(path.join(dest, fileName), file.contents)
@@ -89,4 +92,4 @@ async function generate() {
   }
 }
 
-generate()
+void generate()

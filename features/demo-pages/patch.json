@@ -3,6 +3,8 @@
   "description": "Full build with demo pages and components.",
   "copy": [
     "src/components/pages",
+    "src/components/ui",
+    "src/components/base",
     "src/layouts/DefaultLayout.astro",
     "src/pages/index.astro",
     "src/pages/about.astro"
