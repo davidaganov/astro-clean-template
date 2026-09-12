@@ -1,0 +1,10 @@
+{
+  "label": "Astro Clean Template",
+  "features": [
+    {
+      "value": "i18n",
+      "label": "i18n (@mannisto/astro-i18n)"
+    }
+  ],
+  "demoPagesFeature": "demo-pages"
+}

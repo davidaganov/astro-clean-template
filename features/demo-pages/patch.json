@@ -1,5 +1,4 @@
 {
-  "name": "demo-pages",
   "description": "Full build with demo pages and components.",
   "copy": [
     "src/components/pages",
